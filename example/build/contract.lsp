@@ -6,12 +6,16 @@
   ;; Utilities
   (include "./lib/utilities.lsp")
 
-  ;; Constructor
-  ;; TODO
-  ;; constructor(address)
+  ;; constructor(address,bytes32)
+  ;; only static types at the moment
+  ;; TODO: add support for dynamic types
+  (codecopy scratch (bytecodesize) 0x20)
+  (sstore s_contractAddress @scratch)
+  (codecopy scratch (+ bytecodesize 0x20) 0x20)
+  (sstore s_randomTestData @scratch)
 
   ;; Events
-  ;; TODO
+  ;; TODO add helpers
   ;; event Initialized(bool)
   ;; event Replaced(address,address)
   ;; event Doubled(uint256)

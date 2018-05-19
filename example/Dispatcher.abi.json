@@ -55,6 +55,9 @@
   "inputs": [{
     "name": "contractAddress",
     "type": "address"
+  }, {
+    "name": "randomTestData",
+    "type": "bytes32"
   }],
   "payable": false,
   "stateMutability": "nonpayable",

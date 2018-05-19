@@ -1,10 +1,12 @@
 (seq
 
   ;; Memory.
-  ;; TODO
+  (def 'scratch 0x0)
 
-  ;; Storage.
-  ;; TODO
+  ;; Storage
+  (def 's_contractAddress 0x0)
+  (def 's_randomTestData 0x1)
+  
 
   ;; Jumping here causes an EVM error.
   (def 'invalid-location 0x02)
