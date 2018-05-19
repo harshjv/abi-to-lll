@@ -6,9 +6,17 @@
   ;; Utilities
   (include "./lib/utilities.lsp")
 
+  ;; Constructor
   ;; TODO
-  ;; Provide template for constructor from ABI
+  ;; constructor(address)
 
+  ;; Events
+  ;; TODO
+  ;; event Initialized(bool)
+  ;; event Replaced(address,address)
+  ;; event Doubled(uint256)
+  ;; event Halved(uint256)
+  
   (returnlll
     (seq
       
@@ -41,42 +49,6 @@
           
       ;; double(uint256)
       (function double
-        (seq not-payable
-          ;; TODO
-          ;; Provide template for parameters passed from ABI
-
-          ;; body
-          (stop)))
-          
-      ;; Initialized(bool)
-      (function Initialized
-        (seq not-payable
-          ;; TODO
-          ;; Provide template for parameters passed from ABI
-
-          ;; body
-          (stop)))
-          
-      ;; Replaced(address,address)
-      (function Replaced
-        (seq not-payable
-          ;; TODO
-          ;; Provide template for parameters passed from ABI
-
-          ;; body
-          (stop)))
-          
-      ;; Doubled(uint256)
-      (function Doubled
-        (seq not-payable
-          ;; TODO
-          ;; Provide template for parameters passed from ABI
-
-          ;; body
-          (stop)))
-          
-      ;; Halved(uint256)
-      (function Halved
         (seq not-payable
           ;; TODO
           ;; Provide template for parameters passed from ABI
