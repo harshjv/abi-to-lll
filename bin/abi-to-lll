@@ -31,5 +31,6 @@ try {
   spinner.succeed(`Placed built files in ${outputDir}`)
 } catch (e) {
   spinner.fail(e.message)
+  console.error(e)
   process.exit()
 }

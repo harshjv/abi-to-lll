@@ -17,22 +17,40 @@ module.exports = (pathToAbi, outputDir) => {
 
   fs.ensureDirSync(libDir)
 
-  const fnMap = {}
+  const context = {
+    _constructor: false,
+    functions: {},
+    events: {}
+  }
 
-  abi.filter(fn => fn.name).forEach(fn => {
-    const { inputs } = fn
+  abi.forEach(fn => {
+    const { type, name, inputs } = fn
     const argsType = inputs.map(input => input.type)
-    const sig = `${fn.name}(${argsType.join(',')})`
 
-    fnMap[fn.name] = _.assign({}, {
-      id: bytes4(sig),
-      sig
-    }, fn)
+    if (type === 'function') {
+      const sig = `${name}(${argsType.join(',')})`
+
+      context.functions[name] = _.assign({}, {
+        id: bytes4(sig),
+        sig
+      }, fn)
+    } else if (fn.type === 'constructor') {
+      const sig = `constructor(${argsType.join(',')})`
+
+      context._constructor = _.assign({}, {
+        sig
+      }, fn)
+    } else if (fn.type === 'event') {
+      const sig = `${name}(${argsType.join(',')})`
+      context.events[name] = _.assign({}, {
+        sig
+      }, fn)
+    }
   })
 
-  const contract = nunjucks.render('contract.lsp', { fnMap })
-  const constants = nunjucks.render(path.join('lib', 'constants.lsp'), { fnMap })
-  const utilities = nunjucks.render(path.join('lib', 'utilities.lsp'), { fnMap })
+  const contract = nunjucks.render('contract.lsp', { context })
+  const constants = nunjucks.render(path.join('lib', 'constants.lsp'), { context })
+  const utilities = nunjucks.render(path.join('lib', 'utilities.lsp'), { context })
 
   fs.writeFileSync(path.join(outputDir, 'contract.lsp'), contract)
   fs.writeFileSync(path.join(libDir, 'constants.lsp'), constants)

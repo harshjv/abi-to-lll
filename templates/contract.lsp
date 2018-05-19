@@ -6,14 +6,24 @@
   ;; Utilities
   (include "./lib/utilities.lsp")
 
+  {% if context._constructor %}
+  {%- set _constructor = context._constructor -%}
+  ;; Constructor
   ;; TODO
-  ;; Provide template for constructor from ABI
+  ;; {{ _constructor.sig }}
+  {%- endif %}
 
+  ;; Events
+  ;; TODO
+  {% set events = context.events -%}
+  {%- for name, val in events %};; event {{ val.sig }}
+  {% endfor %}
   (returnlll
     (seq
-      {% for key, val in fnMap %}
+      {% set functions = context.functions -%}
+      {%- for name, val in functions %}
       ;; {{ val.sig }}
-      (function {{key}}
+      (function {{name}}
         (seq{% if not val.payable %} not-payable{% endif %}
           ;; TODO
           ;; Provide template for parameters passed from ABI
