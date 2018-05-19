@@ -1,0 +1,33 @@
+{
+  "name": "abi-to-lll",
+  "version": "0.0.1-alpha.1",
+  "description": "ABI to LLL",
+  "main": "index.js",
+  "bin": "bin/abi-to-lll",
+  "scripts": {
+    "test": "standard"
+  },
+  "author": "Harsh Vakharia <me@harshjv.com> (https://harshjv.com)",
+  "engines": {
+    "node": ">6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harshjv/abi-to-lll.git"
+  },
+  "bugs": {
+    "url": "https://github.com/harshjv/abi-to-lll/issues"
+  },
+  "homepage": "https://github.com/harshjv/abi-to-lll#readme",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.15.1",
+    "lodash": "^4.17.10",
+    "nunjucks": "^3.1.2",
+    "ora": "^2.1.0",
+    "web3": "^1.0.0-beta.34"
+  },
+  "devDependencies": {
+    "standard": "^11.0.1"
+  }
+}

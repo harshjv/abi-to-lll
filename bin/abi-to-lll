@@ -1,0 +1,35 @@
+#! /usr/bin/env node
+
+const path = require('path')
+const ora = require('ora')
+const program = require('commander')
+
+const abiToLll = require('../')
+
+program
+  .version('0.1.0')
+  .usage('[options] <pathToAbi>')
+  .option('-o, --output-dir <o>', 'Output dir. Defaults to ./build', (i) => path.resolve(i))
+  .parse(process.argv)
+
+const spinner = ora('Generating...').start()
+
+let pathToAbi = program.args[0]
+
+if (!pathToAbi) {
+  spinner.fail('ABI is required')
+  process.exit()
+}
+
+pathToAbi = path.resolve(pathToAbi)
+
+const outputDir = program.outputDir || path.join(process.cwd(), 'build')
+
+try {
+  abiToLll(pathToAbi, outputDir)
+  spinner.succeed()
+  spinner.succeed(`Placed built files in ${outputDir}`)
+} catch (e) {
+  spinner.fail(e.message)
+  process.exit()
+}
