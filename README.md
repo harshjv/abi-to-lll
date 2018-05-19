@@ -34,9 +34,9 @@ abi-to-lll -o ./build ./abi.json
 
 ### Output files
 
-* [example/build/contract.lll](./example/build/contract.lll)
-* [example/build/lib/constants.lll](./example/build/lib/constants.lll)
-* [example/build/lib/utilities.lll](./example/build/lib/utilities.lll)
+* [example/build/contract.lsp](./example/build/contract.lsp)
+* [example/build/lib/constants.lsp](./example/build/lib/constants.lsp)
+* [example/build/lib/utilities.lsp](./example/build/lib/utilities.lsp)
 
 
 # License
